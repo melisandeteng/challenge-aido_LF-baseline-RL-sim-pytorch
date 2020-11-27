@@ -1,0 +1,197 @@
+# The following section defines the grid layout.
+#
+# Each row is an array of tiles descriptions.
+# The top-left tile in this file maps to coordinates (0, 0) in the world
+# Each tile contains a string with the kind of tile and its orientation.
+# The orientations are North, South, East, West. This is the direction in
+# which the agent is expected to drive when going onto this tile.
+tiles:
+- [floor    , floor         , floor      , floor       , floor      , floor      , floor         , floor      , floor         , floor         , floor]
+- [floor    , curve_left/W  , straight/W , 3way_left/W , straight/W , straight/W , 3way_left/W   , straight/W , straight/W    , curve_left/N  , asphalt]
+- [floor    , straight/S    , grass      , straight/N  , grass      , grass      , straight/N    , asphalt    , asphalt       , straight/N    , asphalt]
+- [floor    , 3way_left/S   , straight/W , 4way        , straight/W , straight/W , 3way_left/N   , asphalt    , asphalt       , straight/N    , asphalt]
+- [floor    , straight/S    , grass      , straight/N  , grass      , grass      , straight/N    , asphalt    , curve_right/N , curve_left/E  , asphalt]
+- [floor    , curve_left/S  , straight/E , 3way_left/E , straight/E , straight/E , 3way_left/E   , straight/E , curve_left/E  , asphalt       , asphalt]
+- [floor    , floor         , floor      , floor       , floor      , floor      , floor         , floor      , floor         , floor         , floor]
+
+# The following is a listing of 3D objects placed on the map
+#
+# pos: object positions are scaled according to the tile size, so
+#      that (1.5, 2.5) would be exactly in the middle of tile (1, 2)
+# height: Objects can be scaled according to their real-world height in meters
+#         Duckietown tiles are 61cm, or 0.61 meter
+# rotate: the rotation angle determine the object's orientation
+#         a positive rotation angle corresponds to a counter-clockwise
+#         (leftward) rotation. The angles are in degrees.
+#         Models should, at angle 0, face towards the positive X axis.
+objects:
+
+- kind: tree
+  pos: [2.5, 4.5]
+  rotate: 180
+  height: 0.25
+  optional: true
+
+- kind: duckie
+  pos: [2.5, 2.9]
+  rotate: -90
+  height: 0.08
+  optional: true
+- kind: duckie
+  pos: [4.1, 6.1]
+  rotate: 45
+  height: 0.08
+  optional: true
+
+- kind: barrier
+  pos: [9.75, 2.5]
+  rotate: 0
+  height: 0.08
+  optional: true
+- kind: barrier
+  pos: [6.6, 6.1]
+  rotate: 0
+  height: 0.08
+  optional: true
+- kind: cone
+  pos: [7.3, 5.3]
+  rotate: 0
+  height: 0.075
+  optional: true
+- kind: cone
+  pos: [4.2, 4.7]
+  rotate: 0
+  height: 0.075
+  optional: true
+
+- kind: sign_stop
+  pos: [2.08, 4.05]
+  rotate: 90
+  height: 0.18
+  optional: true
+- kind: sign_left_T_intersect
+  pos: [0.94, 3.96]
+  rotate: 90
+  height: 0.18
+  optional: true
+- kind: sign_stop
+  pos: [2.08, 2.96]
+  rotate: -90
+  height: 0.18
+  optional: true
+- kind: sign_right_T_intersect
+  pos: [0.94, 3.05]
+  rotate: -90
+  height: 0.18
+- kind: sign_stop
+  optional: true
+  pos: [0.94, 4.05]
+  rotate: 0
+  height: 0.18
+  optional: true
+- kind: sign_T_intersect
+  pos: [0.94, 2.96]
+  rotate: 0
+  height: 0.18
+  optional: true
+- kind: trafficlight
+  pos: [3.2, 3.2]
+  rotate: 45
+  height: 0.4
+  optional: true
+- kind: sign_4_way_intersect
+  pos: [5.94, 5.05]
+  rotate: -90
+  height: 0.18
+- kind: sign_blank
+  pos: [3.06, 5.95]
+  rotate: -90
+  height: 0.18
+- kind: sign_do_not_enter
+  pos: [9.4, 0.95]
+  rotate: -98
+  height: 0.18
+- kind: sign_duck_crossing
+  pos: [8.8, 3.8]
+  rotate: 307
+  height: 0.18
+- kind: sign_left_T_intersect
+  pos: [5.1, 4.22]
+  rotate: 145
+  height: 0.18
+- kind: sign_right_T_intersect
+  pos: [7.25, 3.82]
+  rotate: 157
+  height: 0.18
+- kind: sign_no_left_turn
+  pos: [7.1, 4.63]
+  rotate: 90
+  height: 0.18
+- kind: sign_no_right_turn
+  pos: [0.8, 1.95]
+  rotate: -10
+  height: 0.18
+- kind: sign_oneway_left
+  pos: [9.33, 5.08]
+  rotate: -137
+  height: 0.18
+- kind: sign_oneway_right
+  pos: [9.2, 5.77]
+  rotate: 120
+  height: 0.18
+- kind: sign_pedestrian
+  pos: [4.1, 0.90]
+  rotate: -145
+  height: 0.18
+- kind: sign_t_light_ahead
+  pos: [10.17, 3.41]
+  rotate: 200
+  height: 0.18
+- kind: sign_yield
+  pos: [4.81, 6.22]
+  rotate: 92
+  height: 0.18
+
+- kind: house
+  pos: [7.8, 2.6]
+  rotate: 90
+  height: 0.5
+  optional: true
+- kind: building
+  pos: [4.8, 2.5]
+  rotate: 0
+  height: 0.75
+  optional: true
+
+- kind: truck
+  pos: [1.6, 6.3]
+  rotate: 0
+  height: 0.2
+  optional: true
+- kind: bus
+  pos: [2.0, 0.5]
+  rotate: 0
+  height: 0.18
+  optional: true
+- kind: bus
+  pos: [4, 0.5]
+  rotate: 0
+  height: 0.18
+  optional: true
+- kind: bus
+  pos: [6.0, 0.5]
+  rotate: 0
+  height: 0.18
+  optional: true
+- kind: truck
+  pos: [7.5, 0.5]
+  rotate: 180
+  height: 0.2
+  optional: true
+- kind: duckiebot
+  pos: [8.5, 0.75]
+  rotate: 180
+  height: 0.1
+  optional: true
+
+tile_size: 0.585
