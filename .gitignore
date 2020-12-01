@@ -112,4 +112,5 @@ __pycache__/
 src/*
 
 log.txt
+*.code-workspace
 requirements.resolved
