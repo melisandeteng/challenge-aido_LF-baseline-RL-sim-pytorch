@@ -20,8 +20,8 @@ class ActorDense(nn.Module):
         state_dim = functools.reduce(operator.mul, state_dim, 1)
 
         self.l1 = nn.Linear(state_dim, 400)
-        self.l2 = nn.Linear(400, 300)
-        self.l3 = nn.Linear(300, action_dim)
+        self.l2 = nn.Linear(400, 320)
+        self.l3 = nn.Linear(320, action_dim)
 
         self.max_action = max_action
 
@@ -174,7 +174,7 @@ class DDPG(object):
 
     def predict(self, state):
         # just making sure the state has the correct format, otherwise the prediction doesn't work
-        assert state.shape[0] == 3
+        assert state.shape == self.state_dim
 
         if self.flat:
             state = torch.FloatTensor(state.reshape(1, -1)).to(device)

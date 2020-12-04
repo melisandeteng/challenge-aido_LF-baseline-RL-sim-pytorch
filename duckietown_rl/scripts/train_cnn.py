@@ -49,18 +49,18 @@ env = launch_env()
 # Set seeds
 seed(args.seed)
 
-state_dim = env.observation_space.shape
+# TODO: make it (latent_dim * 2) configurable
+state_dim = 64
 action_dim = env.action_space.shape[0]
 max_action = float(env.action_space.high[0])
 
-
 # Initialize policy
-policy = DDPG(state_dim, action_dim, max_action, net_type="cnn")
+policy = DDPG(state_dim, action_dim, max_action, net_type="dense")
 
 replay_buffer = ReplayBuffer(args.replay_buffer_max_size)
 
 # Evaluate untrained policy
-evaluations= [evaluate_policy(env, policy)]
+evaluations = [evaluate_policy(env, policy)]
 
 total_timesteps = 0
 timesteps_since_eval = 0
@@ -68,6 +68,10 @@ episode_num = 0
 done = True
 episode_reward = None
 env_counter = 0
+
+# Load the perception network
+# TODO: load the beta-VAE
+#beta_vae = 
 
 while total_timesteps < args.max_timesteps:
 
@@ -101,7 +105,8 @@ while total_timesteps < args.max_timesteps:
     if total_timesteps < args.start_timesteps:
         action = env.action_space.sample()
     else:
-        action = policy.predict(np.array(obs))
+        representation = beta_vae.represent(obs)
+        action = policy.predict(np.array(representation))
         if args.expl_noise != 0:
             action = (action + np.random.normal(
                 0,
@@ -122,7 +127,6 @@ while total_timesteps < args.max_timesteps:
 
     # Store data in replay buffer
     replay_buffer.add(obs, new_obs, action, reward, done_bool)
-    #approximate_size(replay_buffer)   #TODO rm
 
     obs = new_obs
 
